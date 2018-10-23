@@ -1,7 +1,7 @@
 const { expect, } = require('chai')
 const { isValidPassword, } = require('..')
 
-describe('Email', () => {
+describe('Password', () => {
   it('should return true for "password"', () => {
     expect(isValidPassword("password")).to.be.equal(true)
   })
