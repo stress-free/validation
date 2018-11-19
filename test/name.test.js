@@ -12,7 +12,4 @@ describe('Name', () => {
     expect(isValidName(null)).to.be.equal(false)
     expect(isValidName(undefined)).to.be.equal(false)
   })
-  it('should return false empty strings', () => {
-    expect(isValidName('')).to.be.equal(false)
-  })
 })
