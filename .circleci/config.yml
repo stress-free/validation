@@ -12,17 +12,7 @@ jobs:
       - run:
           name: Install and test
           command: yarn install && yarn test
-      - run:
-          name: Tag new version in GitHub
-          command: |
-            tag="v$(cat package.json | jq -r .version)"
-            is_missing_tag=$(git tag | (grep "^$tag$" || true) | wc -l)
 
-            if [[ "$is_missing_tag" -eq "0" ]]; then
-              # Let's make a new release!
-              git tag $tag
-              git push origin --tags
-            fi
   tag:
     docker:
       - image: 167617790971.dkr.ecr.us-west-1.amazonaws.com/circleci
@@ -42,6 +32,7 @@ jobs:
               git tag $tag
               git push origin --tags
             fi
+
 workflows:
   version: 2
   test:
