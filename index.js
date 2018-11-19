@@ -6,6 +6,5 @@ module.exports = {
   isValidPassword: password => !!( password && password.length >= 6 ),
   isValidPhone: phoneNumber => phoneNumber.length > 6,
   isValidZipcode: zipcode => validZipcodes.has(String(zipcode)),
-  isValidFirstName: firstName => !!firstName && firstName.length > 0,
-  isValidLastName: lastName => !!lastName && lastName.length > 0,
+  isValidName: name => !!name && name.length > 0,
 }
