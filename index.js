@@ -1,9 +1,10 @@
 const phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance()
 const validZipcodes = new Set(require('./data/validZipcodes'))
+// Source: http://emailregex.com/ - JavaScript section
+const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
-// TODO add Regex for email
 module.exports = {
-  isValidEmail: email => email.length > 3 && email.includes('@') && !email.includes(' '), 
+  isValidEmail: email => emailRegex.test(email), 
   isValidPassword: password => !!( password && password.length >= 6 ),
   isValidPhone: (phone, region = 'US') => {
     // Reject numbers with letters in them because google-libphonenumber accepts numbers with letters sometimes
