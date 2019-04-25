@@ -1,4 +1,4 @@
-const phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance()
+const { parsePhoneNumberFromString, } = require('libphonenumber-js/min')
 const validZipcodes = new Set(require('./data/validZipcodes'))
 // Source: http://emailregex.com/ - JavaScript section
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -15,12 +15,12 @@ module.exports = {
 
     let number
     try {
-      number = phoneUtil.parse(phone, region)
+      number = parsePhoneNumberFromString(phone, region)
     } catch (e) {
       return false
     }
 
-    return phoneUtil.isValidNumberForRegion(number, region)
+    return number.isValid()
   },
   isValidZipcode: zipcode => validZipcodes.has(String(zipcode)),
   isValidName: name => !!name && name.length > 0,
