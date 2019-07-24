@@ -20,7 +20,7 @@ module.exports = {
       return false
     }
 
-    return number.isValid()
+    return number && number.isValid()
   },
   isValidZipcode: zipcode => validZipcodes.has(String(zipcode)),
   isValidName: name => !!name && name.length > 0,
